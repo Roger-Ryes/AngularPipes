@@ -1,0 +1,81 @@
+<div class="text-layout">
+    <h1>Pipes personalizados</h1>
+    <p>Pipes creados por nosotros</p>
+    <p>{{ value | mayusculas:typeCase}}</p>
+    
+</div>
+
+<br>
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        
+    </div>
+    
+    <div class="p-toolbar-group-right">
+        <p-button label="Cambiar Case" 
+                (click)="changeCase()"
+                class="m-1">
+        </p-button>
+        <button pButton
+                icon="pi pi-sort"
+                label="Por nombre"
+                class="m-1 p-button-secondary"
+                (click)="changeSortBy('name')">
+        </button>
+        <button pButton
+                icon="pi pi-sort"
+                label="Vuela"
+                class="m-1 p-button-success"
+                (click)="changeSortBy('fly')">
+        </button>
+        <button pButton
+                icon="pi pi-sort"
+                label="Por color"
+                class="m-1 p-button-help"
+                (click)="changeSortBy('color')">
+        </button>
+    </div>
+</p-toolbar>
+
+<div class="card">
+    <div class="field m-2">
+        <p-table [value]="heroes | ordenar:sortBy">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Vuela</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-hero>
+                <tr>
+                    <td>{{ hero.name }}</td>
+                    <td>{{ hero.fly | vuela | titlecase }}</td>
+                    <td>{{ hero.color }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>
+<div class="card">
+    <div class="field m-2">
+        <p-table [value]="heroes| slice:0">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="fly">Vuela <p-sortIcon field="fly"></p-sortIcon></th>
+                    <th pSortableColumn="color">Color <p-sortIcon field="color"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-hero>
+                <tr>
+                    <td>{{ hero.name }}</td>
+                    <td>{{ hero.fly | vuela | titlecase }}</td>
+                    <td>{{ hero.color }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>

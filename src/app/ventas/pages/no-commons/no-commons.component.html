@@ -1,0 +1,78 @@
+<div class="text-layout">
+    <h1>Pipes no tan comunes</h1>
+    <p>Pipes incluidos en Angulos - En el modulo Common Module</p>
+</div>
+<div class="grid">
+    <div class="col-6">
+        <p-fieldset legend="il18nSelect Pipe" [toggleable]="true">
+                Saludos {{name}} es un placer {{gender | i18nSelect: inviteMap}} a nuestro evento
+                <hr><a target="_blank" [href]="url_I18nSelectPipe">Referencia</a>
+                <br><br>
+                <p-button label="Cambiar genero" 
+                          (click)="changeGender()"></p-button>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6">
+        <p-fieldset legend="il18nPlural Pipe" [toggleable]="true">
+            Actualmente tenemos {{costumers.length | i18nPlural:messageMapping}}
+        <hr><a target="_blank" [href]="url_I18nPluralPipe">Referencia</a>
+        <br><br>
+        <button pButton 
+                class="p-button-info" 
+                label="Disminuar clientes" 
+                (click)="reduceCostumers()"></button>
+        <button pButton 
+                class="p-button-info" 
+                label="Aumentar clientes" 
+                (click)="increaseCostumers()"></button>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6">
+        <p-fieldset legend="slice Pipe" [toggleable]="true">
+            <h3>Original</h3>
+            <p>{{ costumers }}</p>
+            <h3>slice:0</h3>
+            <p>{{ costumers | slice:0 }}</p>
+            <h3>slice:0:3</h3>
+            <p>{{ costumers | slice:0:3 }}</p>
+            <h3>slice:2:5</h3>
+            <p>{{ costumers | slice:2:5 }}</p>
+
+            <hr><a target="_blank" [href]="url_slicePipe">Referencia</a>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6">
+        <p-fieldset legend="keyvalue Pipe" [toggleable]="true">
+            <ul>
+                <li *ngFor="let item of person | keyvalue">
+                    <!-- {{ item | json }} -->
+                    <b>{{ item.key | titlecase}}:</b> {{item.value}}
+                </li>
+            </ul>
+
+            <hr><a target="_blank" [href]="url_slicePipe">Referencia</a>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-6">
+        <p-fieldset legend="json Pipe" [toggleable]="true">
+            <pre>{{ heroes | json }}</pre>
+            <hr><a target="_blank" [href]="url_jsonPipe">Referencia</a>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-6">
+        <p-fieldset legend="Async Pipe" [toggleable]="true">
+            <h5 *ngIf="!(myObservable | async)">Esperando Observable</h5>
+            <p> {{ myObservable | async }} </p>
+
+            <h5 *ngIf="!(valuePromise | async)"> Esperando promesa </h5>
+            <p> {{ valuePromise | async }} </p>
+            <hr><a target="_blank" [href]="url_asyncPipe">Referencia</a>
+        </p-fieldset>
+    </div>
+
+</div>
